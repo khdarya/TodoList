@@ -7,6 +7,7 @@ import {CheckBox, Delete} from "@material-ui/icons";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./state/store";
 import {TodoListType} from "./AppWithRedux";
+import {addTaskAC} from "./state/tasks-reducer";
 
 
 type PropsType = {
@@ -32,16 +33,19 @@ export function TodoList(props: PropsType) {
     //
     // let tasksTodo = useSelector<AppRootStateType, Array<TaskType>>(state => todo ? state.tasks[todo.id] : [])
     // let dispatch = useDispatch()
+    //
+    // function addTask(title: string) {
+    //     dispatch(addTaskAC(title, todo ? todo.id: ''));
+    // }
+
 
     const addTask = (title: string) => {
         props.addTask(title, props.id);
     }
 
-
-
-    // function addTask(title: string, todolistId: string) {
-    //     dispatch(addTaskAC(title, todolistId));
-    // }
+    const removeTodoList = () => {
+        props.removeTodoList(props.id);
+    }
 
     const changeTodoListTitle = (title: string) => {
         props.changeTodoListTitle(props.id, title);
@@ -82,9 +86,7 @@ export function TodoList(props: PropsType) {
 
             {/*<button onClick={() => {props.removeTodoList(props.id)}}>X</button>*/}
 
-            <IconButton onClick={() => {
-                props.removeTodoList(props.id)
-            }}>
+            <IconButton onClick={removeTodoList}>
                 <Delete/>
             </IconButton>
         </h3>
