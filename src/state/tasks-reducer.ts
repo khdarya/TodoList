@@ -67,7 +67,7 @@ export const tasksReducer = (state = initialState, action: ActionType) => {
                         return {...task, isDone: action.isDone}
                     }
                 });
-            return {...copyState, [action.todolistId]: todolistTasks}
+            return ({...copyState, [action.todolistId]: todolistTasks});
         }
 
 //2nd option
